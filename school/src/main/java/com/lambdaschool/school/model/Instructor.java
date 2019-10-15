@@ -1,6 +1,9 @@
 package com.lambdaschool.school.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -58,4 +61,6 @@ public class Instructor
     {
         this.courses = courses;
     }
+
+
 }
