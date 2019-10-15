@@ -4,15 +4,23 @@ import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.repository.CourseRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service(value = "courseService")
 public class CourseServiceImpl implements CourseService
 {
+    @Override
+    public List<Course> findAllPageable(Pageable pageable) {
+        List<Course> list = new ArrayList<>();
+        courserepos.findAll(pageable).iterator().forEachRemaining(list::add);
+        return list;    }
+
     @Autowired
     private CourseRepository courserepos;
 
