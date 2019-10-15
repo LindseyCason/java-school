@@ -5,6 +5,8 @@ import com.lambdaschool.school.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,9 @@ public class StudentController
     private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     // Please note there is no way to add students to course yet!
+//localhost:2085/students/students
+//localhost:2085/students/student/paging/?page1&size=10
+//localhost:2085/students/student/paging/?sort=studname,desc
 
     @GetMapping(value = "/students", produces = {"application/json"})
     public ResponseEntity<?> listAllStudents()
@@ -33,6 +38,12 @@ public class StudentController
         logger.info("GET endpoint /students has been accessed");
         List<Student> myStudents = studentService.findAll();
         return new ResponseEntity<>(myStudents, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/student/paging", produces = {"application/json"})
+    public ResponseEntity<?> listAllStudentsByPage(@PageableDefault(page=0, size=5) Pageable pageable){
+List<Student> myStudents = studentService.findAllPageable(pageable);
+return new ResponseEntity<>( myStudents, HttpStatus.OK );
     }
 
     @GetMapping(value = "/Student/{StudentId}",
