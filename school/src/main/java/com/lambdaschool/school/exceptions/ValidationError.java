@@ -1,35 +1,43 @@
 package com.lambdaschool.school.exceptions;
 
-public class ValidationError {
+public class ValidationError
+{
     private String code;
     private String message;
 
-    public ValidationError() {
+    public ValidationError()
+    {
     }
 
-    public ValidationError(String code, String message) {
+    public ValidationError(String code, String message)
+    {
         this.code = code;
         this.message = message;
     }
 
-    public String getCode() {
+    public String getCode()
+    {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(String code)
+    {
         this.code = code;
     }
 
-    public String getMessage() {
+    public String getMessage()
+    {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(String message)
+    {
         this.message = message;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "ValidationError{" +
                 "code='" + code + '\'' +
                 ", message='" + message + '\'' +

@@ -14,54 +14,66 @@ public class ErrorDetail
     private int status;
     private String detail;
     private String timestamp;
-    private String developermessahe;
-    private Map<String, List<ValidationError>> errors = new HashMap<>(  );
+    private String developermessage;
+    private Map<String, List<ValidationError>> errors = new HashMap<>();
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
-    public int getStatus() {
+    public int getStatus()
+    {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
 
-    public String getDetail() {
+    public String getDetail()
+    {
         return detail;
     }
 
-    public void setDetail(String detail) {
+    public void setDetail(String detail)
+    {
         this.detail = detail;
     }
 
-    public String getTimestamp() {
+    public String getTimestamp()
+    {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = new SimpleDateFormat( "dd mmm yyyy HH:mm:ss:SSS z" ).format( new Date( timestamp));
+    public void setTimestamp(Long timestamp)
+    {
+        this.timestamp = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS z").format(new Date(timestamp));
     }
 
-    public String getDevelopermessahe() {
-        return developermessahe;
+    public String getDevelopermessage()
+    {
+        return developermessage;
     }
 
-    public void setDevelopermessahe(String developermessahe) {
-        this.developermessahe = developermessahe;
+    public void setDevelopermessage(String developermessage)
+    {
+        this.developermessage = developermessage;
     }
 
-    public Map<String, List<ValidationError>> getErrors() {
+    public Map<String, List<ValidationError>> getErrors()
+    {
         return errors;
     }
 
-    public void setErrors(Map<String, List<ValidationError>> errors) {
+    public void setErrors(Map<String, List<ValidationError>> errors)
+    {
         this.errors = errors;
     }
 }
