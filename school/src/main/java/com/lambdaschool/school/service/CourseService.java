@@ -13,6 +13,8 @@ public interface CourseService
 
     List<Course> findAllPageable(Pageable pageable);
 
+    Course findCourseById(long id);
+
 
     ArrayList<CountStudentsInCourses> getCountStudentsInCourse();
 

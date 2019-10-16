@@ -1,5 +1,6 @@
 package com.lambdaschool.school.service;
 
+import com.lambdaschool.school.exceptions.ResourceFoundException;
 import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.repository.CourseRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
@@ -50,5 +51,12 @@ public class CourseServiceImpl implements CourseService
         {
             throw new EntityNotFoundException(Long.toString(id));
         }
+    }
+
+    @Override
+    public Course findCourseById(long id) throws ResourceFoundException
+    {
+        return courserepos.findById(id)
+                .orElseThrow(() -> new ResourceFoundException(Long.toString(id)));
     }
 }

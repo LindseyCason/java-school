@@ -80,4 +80,17 @@ public class CourseController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Returns a course by ID", response = Course.class)
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Course ID Found", response = Course.class),
+            @ApiResponse(code = 404, message = "Course ID Not Found", response = ErrorDetail.class)})
+    @GetMapping(value = "/courseid/{courseid}",
+            produces = {"application/json"})
+    public ResponseEntity<?> getCourseById(
+            @ApiParam(value = "Course ID number", required = true, example = "3")
+            @PathVariable long courseid) {
+        logger.info( "GET endpoint /course/" + courseid + " has been accessed" );
+        Course r = courseService.findCourseById( courseid );
+        return new ResponseEntity<>( r, HttpStatus.OK );
+    }
+
 }
