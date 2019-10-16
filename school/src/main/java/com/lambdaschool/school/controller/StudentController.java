@@ -83,7 +83,7 @@ public class StudentController {
     @GetMapping(value = "/student/namelike/{name}",
             produces = {"application/json"})
     public ResponseEntity<?> getStudentByNameContaining(
-            @ApiParam(value = "Partial student's name", required = true, example = "joh")
+            @ApiParam(value = "Partial student's name", required = true, example = "mar")
 
             @PathVariable String name) {
         logger.info( "GET endpoint /student/namelike/" + name + " accessed" );

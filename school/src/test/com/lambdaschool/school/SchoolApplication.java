@@ -6,10 +6,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-//import springfox.documentation.swagger2.annotations.EnableSwagger2;
-//
-//@EnableWebMvc
+
+@EnableWebMvc
 //@EnableJpaAuditing
+//THIS NEEDS TO  BE DISABLED
+
 @SpringBootApplication
 public class SchoolApplication
 {
@@ -17,10 +18,9 @@ public class SchoolApplication
     public static void main(String[] args)
 
     {
-        SpringApplication.run(SchoolApplication.class, args);
-//        ApplicationContext ctx = SpringApplication.run(SchoolApplication.class, args);
-//        DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
-//        dispatcherServlet.setThrowExceptionIfNoHandlerFound( true );
+        ApplicationContext ctx = SpringApplication.run(SchoolApplication.class, args);
+        DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
+        dispatcherServlet.setThrowExceptionIfNoHandlerFound( true );
     }
 
 }
