@@ -100,7 +100,7 @@ public class CourseControllerTest {
 
         String apiUrl = "/courses/course/add";
 
-        // build a user
+        // build a course
         ArrayList<Course> thisCourse = new ArrayList<>();
         ArrayList<Instructor> thisInstructor = new ArrayList<>();
         Course c1 = new Course("lindsey");
@@ -112,7 +112,7 @@ public class CourseControllerTest {
         String courseString = mapper.writeValueAsString(c1);
 
         Mockito.when(courseService.save(any(Course.class))).thenReturn(c1);
-//IS THIS ALSO THE TEST FOR SAVE BECASUE OF THE ABOVE
+//IS THIS ALSO THE TEST FOR SAVE BECASUE OF THE ABOVE??
         RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
                 .content(courseString);

@@ -62,6 +62,9 @@ public class CourseServiceImpl implements CourseService
 
     @Override
     public Course save(Course course) {
-        return null;
+        Course newCourse = new Course();
+        newCourse.setCoursename(course.getCoursename());
+
+        return courserepos.save(newCourse);
     }
 }

@@ -11,8 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -28,6 +32,8 @@ import static org.hamcrest.number.OrderingComparison.lessThan;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@WebMvcTest(value = CourseController.class, secure = false)
+//@EnableAutoConfiguration(exclude = {SecurityConfig})
 
 public class CourseControllerIntegrationTest {
     @Autowired
@@ -51,24 +57,20 @@ public class CourseControllerIntegrationTest {
 
     public List<Course> courseList;
 
-//    @Test
-//    public void ANewCourse() throws Exception
-//    {
-//
-//        ArrayList<Course> thisCourse = new ArrayList<>();
-//        ArrayList<Instructor> thisInstructor = new ArrayList<>();
-//        Course c1 = new Course("lindsey");
-//        c1.setCourseid(7);
-//        ArrayList<Course>   courses = new ArrayList<>(  );
+    @Test
+    public void ANewCourse() throws Exception
+    {
+
+        Course c1 = new Course("lindsey");
 //        courseList.add(c1);
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        String courseString = mapper.writeValueAsString(c1);
-////        System.out.println(courseString);
-//
-//        given().contentType( "application/json" ).body( courseString ).when().post("/courses/course/add").then().statusCode( 201 );
+
+        ObjectMapper mapper = new ObjectMapper();
+        String courseString = mapper.writeValueAsString(c1);
+//        System.out.println(courseString);
+
+        given().contentType( "application/json" ).body( courseString ).when().post("/courses/course/add").then().statusCode( 201 );
 
 
-//    }
+    }
 
 }
