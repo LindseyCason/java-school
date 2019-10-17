@@ -10,10 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +50,7 @@ public class CourseController
     public ResponseEntity<?> listAllCourses()
     {
         logger.info("endpoint /courses has been accessed");
-        ArrayList<Course> myCourses = courseService.findAll();
+        ArrayList<Course> myCourses = courseService.findAll( Pageable.unpaged() );
         return new ResponseEntity<>(myCourses, HttpStatus.OK);
     }
 
@@ -91,6 +96,20 @@ public class CourseController
         logger.info( "GET endpoint /course/" + courseid + " has been accessed" );
         Course r = courseService.findCourseById( courseid );
         return new ResponseEntity<>( r, HttpStatus.OK );
+    }
+
+
+//    This add does not work
+
+    @PostMapping(value = "/course/add",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> addNewCourse(@Valid
+                                           @RequestBody
+                                                   Course newCourse) throws URISyntaxException {
+        logger.info( "POST endpoint /course/add has been accessed" );
+        newCourse = courseService.save( newCourse );
+        return new ResponseEntity<>( HttpStatus.CREATED );
     }
 
 }

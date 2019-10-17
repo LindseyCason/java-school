@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService
     private CourseRepository courserepos;
 
     @Override
-    public ArrayList<Course> findAll()
+    public ArrayList<Course> findAll(Pageable unpaged)
     {
         ArrayList<Course> list = new ArrayList<>();
         courserepos.findAll().iterator().forEachRemaining(list::add);
@@ -58,5 +58,10 @@ public class CourseServiceImpl implements CourseService
     {
         return courserepos.findById(id)
                 .orElseThrow(() -> new ResourceFoundException(Long.toString(id)));
+    }
+
+    @Override
+    public Course save(Course course) {
+        return null;
     }
 }
