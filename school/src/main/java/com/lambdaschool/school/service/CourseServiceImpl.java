@@ -1,23 +1,32 @@
 package com.lambdaschool.school.service;
 
+import com.lambdaschool.school.exceptions.ResourceFoundException;
 import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.repository.CourseRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service(value = "courseService")
 public class CourseServiceImpl implements CourseService
 {
+    @Override
+    public List<Course> findAllPageable(Pageable pageable) {
+        List<Course> list = new ArrayList<>();
+        courserepos.findAll(pageable).iterator().forEachRemaining(list::add);
+        return list;    }
+
     @Autowired
     private CourseRepository courserepos;
 
     @Override
-    public ArrayList<Course> findAll()
+    public ArrayList<Course> findAll(Pageable unpaged)
     {
         ArrayList<Course> list = new ArrayList<>();
         courserepos.findAll().iterator().forEachRemaining(list::add);
@@ -42,5 +51,20 @@ public class CourseServiceImpl implements CourseService
         {
             throw new EntityNotFoundException(Long.toString(id));
         }
+    }
+
+    @Override
+    public Course findCourseById(long id) throws ResourceFoundException
+    {
+        return courserepos.findById(id)
+                .orElseThrow(() -> new ResourceFoundException(Long.toString(id)));
+    }
+
+    @Override
+    public Course save(Course course) {
+        Course newCourse = new Course();
+        newCourse.setCoursename(course.getCoursename());
+
+        return courserepos.save(newCourse);
     }
 }
